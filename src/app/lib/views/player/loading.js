@@ -35,24 +35,14 @@
       streaming: ".external-play",
       controls: ".player-controls",
       cancel_button: "#cancel-button",
-      cancel_button_vpn: "#cancel-button-vpn",
 
       playingbarBox: ".playing-progressbar",
       playingbar: "#playingbar-contents",
-
-      vpn: "#vpn-contents",
-      userIp: "#userIp",
-      userCity: "#userCity",
-      userCountry: "#userCountry",
-      userZIP: "#userZIP",
-      userISP: "#userISP",
-      map: "#map"
     },
 
     events: {
       "click #cancel-button": "cancelStreaming",
       "click #cancel-button-regular": "cancelStreaming",
-      "click #cancel-button-vpn": "cancelStreamingVPN",
       "click .pause": "pauseStreaming",
       "click .stop": "stopStreaming",
       "click .play": "resumeStreaming",
@@ -90,51 +80,10 @@
         }
       });
 
-      if (Settings.vpnEnabled) {
-
-      if (!VPNht.isInstalled()) {
-        that.showVPNLoader();
-      } else {
-        VPNht.isConnected().then(isConnected => {
-          if (!isConnected) {
-            that.showVPNLoader();
-          }
-        });
-      }
-
-      }
-
       this.ddone = 'false';
       win.info("Loading torrent");
 
       this.listenTo(this.model, "change:state", this.onStateUpdate);
-    },
-
-    showVPNLoader: function() {
-      request(
-        {
-          url: "https://myip.ht/status",
-          json: true
-        },
-        (err, _, data) => {
-          if (err || !data || data.error) {
-            console.log("can't extract user data, using default loader");
-          } else {
-            this.ui.cancel_button.css("visibility", "hidden");
-            this.ui.vpn.css("display", "block");
-            this.ui.state.css("top", "200px");
-            this.ui.userIp.text(data.ip);
-            this.ui.userCity.text(data.advanced.city);
-            this.ui.userCountry.text(data.advanced.countryName);
-            this.ui.userZIP.text(data.advanced.postalCode);
-            this.ui.userISP.text(data.isp);
-            this.ui.map.attr(
-              "src",
-              `https://maps.google.com/maps/api/staticmap?center=${data.advanced.latitude},${data.advanced.longitude}&zoom=14&sensor=false&size=640x403&key=AIzaSyDEReWNL61EYlVTTT6isiYn1EqRZTtd4bk`
-            );
-          }
-        }
-      );
     },
 
     initKeyboardShortcuts: function() {
@@ -205,7 +154,6 @@
         this.ui.stateTextDownload.hide();
         this.ui.progressbar.hide();
         if (streamInfo && streamInfo.get("device")) {
-          this.ui.vpn.css("display", "none");
           this.ui.cancel_button.css("visibility", "hidden");
           this.ui.controls.css("visibility", "visible");
           this.ui.playingbarBox.css("visibility", "visible");
@@ -343,11 +291,6 @@
       App.vent.trigger("stream:stop");
       App.vent.trigger("player:close");
       App.vent.trigger("torrentcache:stop");
-    },
-
-    cancelStreamingVPN: function() {
-      this.cancelStreaming();
-      App.vent.trigger("vpn:open");
     },
 
     showpcontrols: function (e) {

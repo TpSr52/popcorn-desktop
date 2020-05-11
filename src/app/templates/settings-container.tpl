@@ -502,10 +502,6 @@
                 %>
                 <input type="text" size="20" name="overallRatio" value="<%= overallRatio() %>">&nbsp;&nbsp;<em><%= Common.fileSize(Settings.totalDownloaded) %><i class="fa fa-arrow-circle-down"></i><%= Common.fileSize(Settings.totalUploaded) %><i class="fa fa-arrow-circle-up"></i></em>
             </span>
-            <span>
-                <input class="settings-checkbox" name="vpnEnabled" id="vpnEnabled" type="checkbox" <%=(Settings.vpnEnabled? "checked='checked'":"")%>>
-                <label class="settings-label" for="vpnEnabled"><%= i18n.__("Enable VPN") %></label>
-            </span>
 
         </div>
     </section>

@@ -224,7 +224,6 @@
                 case 'moviesShowQuality':
                 case 'deleteTmpOnClose':
                 case 'continueSeedingOnStart':
-                case 'vpnEnabled':
                 case 'coversShowRating':
                 case 'translateSynopsis':
                 case 'showAdvancedSettings':
@@ -322,7 +321,6 @@
                         $('.advanced').css('display', 'none');
                     }
                     break;
-                case 'vpnEnabled':
                 case 'language':
                 case 'watchedCovers':
                     App.vent.trigger('movies:list');

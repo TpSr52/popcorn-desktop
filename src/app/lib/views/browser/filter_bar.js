@@ -24,7 +24,6 @@
       "click .types .dropdown-menu a": "changeType",
       "click #filterbar-settings": "settings",
       "click #filterbar-about": "about",
-      "click #filterbar-vpn": "vpn",
       "click .movieTabShow": "movieTabShow",
       "click .tvshowTabShow": "tvshowTabShow",
       "click .animeTabShow": "animeTabShow",
@@ -37,34 +36,6 @@
 
     initialize: function(e) {
       App.vent.on("filter-bar:render", this.render);
-
-      if (VPNht.isInstalled()) {
-        VPNht.isConnected().then(isConnected => {
-          if (isConnected) {
-            $("#filterbar-vpn")
-              .addClass("vpn-connected")
-              .addClass("fa-lock")
-              .removeClass("vpn-disconnected")
-              .removeClass("fa-unlock");
-          }
-        });
-      }
-
-      App.vent.on("vpn:connected", function() {
-        $("#filterbar-vpn")
-          .addClass("vpn-connected")
-          .addClass("fa-lock")
-          .removeClass("vpn-disconnected")
-          .removeClass("fa-unlock");
-      });
-
-      App.vent.on("vpn:disconnected", function() {
-        $("#filterbar-vpn")
-          .addClass("vpn-disconnected")
-          .addClass("fa-unlock")
-          .removeClass("vpn-connected")
-          .removeClass("fa-lock");
-      });
     },
 
     focus: function(e) {
@@ -356,10 +327,6 @@
 
     about: function(e) {
       App.vent.trigger("about:show");
-    },
-
-    vpn: function(e) {
-      App.vent.trigger("vpn:open");
     },
 
     showTorrentCollection: function(e) {

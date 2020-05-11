@@ -175,7 +175,6 @@ Settings.tmpLocation = path.join(os.tmpdir(), Settings.projectName);
 Settings.databaseLocation = path.join(data_path, "data");
 Settings.deleteTmpOnClose = true;
 Settings.continueSeedingOnStart = false;
-Settings.vpnEnabled = true;
 Settings.maxActiveTorrents = 5;
 Settings.automaticUpdating = true;
 Settings.UpdateSeed = false;

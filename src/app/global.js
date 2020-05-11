@@ -36,7 +36,5 @@ var _ = require("underscore"),
   // Torrent engines
   WebTorrent = require("webtorrent"),
   torrentCollection = require("torrentcollection2"),
-  // VPN
-  VPNht = require("@vpnht/sdk"),
   // NodeJS
   child = require("child_process");

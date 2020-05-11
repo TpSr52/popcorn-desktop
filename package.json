@@ -40,7 +40,7 @@
   ],
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.12.1",
-    "@vpnht/sdk": "^1.0.10",
+    "addic7ed-api": "^1.9.0",
     "adm-zip": "0.4.13",
     "airplayer": "2.0.0",
     "async": "2.6.1",
@@ -73,7 +73,7 @@
     "nedb": "1.8.0",
     "node-captions": "0.4.6",
     "node-tvdb": "^4.1.0",
-    "opensubtitles-api": "5.0.0",
+    "opensubtitles-api": "^5.1.2",
     "os-name": "3.0.0",
     "q": "2.0.3",
     "querystring": "^0.2.0",
